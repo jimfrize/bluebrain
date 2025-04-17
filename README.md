@@ -2,7 +2,7 @@
 
 ![bb](https://github.com/user-attachments/assets/3658e646-d5ac-4ee3-abab-b1aa27923d45)
 
-ESP32 based reciever/controller for insect-class combat robot.
+ESP32 based receiver/controller for insect-class combat robot.
 
 In this guide I will show you how I built a compact and low cost “brain” for an ant-weight combat robot. This "brain" lets me control my robot via Bluetooth using an XBox controler.
 
