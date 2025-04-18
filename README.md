@@ -58,7 +58,7 @@ Silicon insulated multi-strand wire is soldered to the power input of the DollaT
 
 Here we can see the completed "brain", the headers are soldered to connect the Xiao and DollaTek boards together in a "sandwich". The red solid core wire has been soldered to the input of the voltage regulator, the black solid core wire has been connected to the outside of the USB-C connector - This is essentially a ground connection on the Xaio board.
 
-The code provided is setup for my particular robot design, as such it uses the right analogue joystick to control motor movement and the right analogue paddle to control the servo possition with 90 degrees of movement.
+The code provided is setup for my particular robot design, as such it uses the right analogue joystick to control motor movement and the right analogue paddle to control the servo possition with 100 degrees of movement.
 
 Hope this is useful, let me know if you have success with this setup.
 
