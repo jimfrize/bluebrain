@@ -35,6 +35,8 @@ I only used one servo in my robot design, but it's worth noting that muliple ser
 
 Wiring Diagram:
 
+-=WARNING - DO NOT CONNECT THE USB CABLE AND BATTERY AT THE SAME TIME=-
+
 ![wiring_diagram](https://github.com/user-attachments/assets/29a46df0-f8c6-463e-b914-6bbae29d0d50)
 
 The GPIO labels on the Seeed Xiao refer to the pin number in the Arduino IDE (e.g. GPIO10 is equivalent to pin 10 in the IDE).
@@ -59,6 +61,9 @@ Silicon insulated multi-strand wire is soldered to the power input of the DollaT
 Here we can see the completed "brain", the headers are soldered to connect the Xiao and DollaTek boards together in a "sandwich". The red solid core wire has been soldered to the input of the voltage regulator, the black solid core wire has been connected to the outside of the USB-C connector - This is essentially a ground connection on the Xaio board.
 
 The code provided is setup for my particular robot design, as such it uses the right analogue joystick to control motor movement and the right analogue paddle to control the servo possition with 100 degrees of movement.
+
+-=WARNING - DO NOT CONNECT THE USB CABLE AND BATTERY AT THE SAME TIME=-
+You can test the functionality of your circuit with 5V power from the USB connection, without using the battery. This should be enough for diagnostic purposes. Once you have the code uploaded and working properly, you can then remove the USB and test the circuit with the full 7.4V from the battery.
 
 Hope this is useful, let me know if you have success with this setup.
 
