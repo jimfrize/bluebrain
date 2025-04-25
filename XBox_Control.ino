@@ -155,7 +155,7 @@ void setup()
     // forget paired devices
     BP32.forgetBluetoothKeys();
 
-    serv.attach(2);
+    serv.attach(servoPin);
     failsafe();
 }
 
