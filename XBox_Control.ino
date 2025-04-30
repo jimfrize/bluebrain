@@ -2,10 +2,10 @@
 #include <ESP32Servo.h>
 
 // motor driver pins
-int motorLN = 3;
 int motorLP = 2;
-int motorRN = 6;
+int motorLN = 3;
 int motorRP = 7;
+int motorRN = 6;
 
 // servo variables
 int servoPin = 10;
@@ -34,94 +34,44 @@ void onDisconnectedController(ControllerPtr ctl)
 
 void processGamepad(ControllerPtr ctl)
 {
-    int Xpos = ctl->axisRX();
-    int Ypos = ctl->axisRY();
+    int Rpos = ctl->axisRY();
+    int Lpos = ctl->axisY();
 
-    int dead = 150; // size of deadzone for joystick
+    int dead = 50; // size of deadzone for joystick
 
-    if(Ypos < 0 - dead) // forward
+    if(Rpos < 0 - dead)
     {
-      if(Xpos < 0 - dead) // left
-      {
-        analogWrite(motorRN, 0);
-        analogWrite(motorLN, 0);
-
-        analogWrite(motorRP, map(Ypos, 0, -512, 0, 255) - map(Xpos, 0, -512, 0, 255));
-        analogWrite(motorLP, map(Ypos, 0, -512, 0, 255));
-      }
-      else if(Xpos > dead) // right
-      {
-        analogWrite(motorRN, 0);
-        analogWrite(motorLN, 0);
-
-        analogWrite(motorRP, map(Ypos, 0, -512, 0, 255));
-        analogWrite(motorLP, map(Ypos, 0, -512, 0, 255) - map(Xpos, 0, 511, 0, 255));
-      }
-      else // dead forward
-      {
-        analogWrite(motorRN, 0);
-        analogWrite(motorLN, 0);
-
-        analogWrite(motorRP, map(Ypos, 0, -512, 0, 255));
-        analogWrite(motorLP, map(Ypos, 0, -512, 0, 255));
-      }
+        analogWrite(motorRP, 0);
+        analogWrite(motorRN, map(Rpos, -dead, -512, 0, 255));
     }
-    else if(Ypos > dead) // reverse
+    else if(Rpos > 0 + dead)
     {
-      if(Xpos <  0 - dead) // left
-      {
-        analogWrite(motorRP, 0);
-        analogWrite(motorLP, 0);
-
-        analogWrite(motorRN, map(Ypos, 0, 511, 0, 255) - map(Xpos, 0, -512, 0, 255));
-        analogWrite(motorLN, map(Ypos, 0, 511, 0, 255));
-      }
-      else if(Xpos > dead) // right
-      {
-        analogWrite(motorRP, 0);
-        analogWrite(motorLP, 0);
-
-        analogWrite(motorRN, map(Ypos, 0, 511, 0, 255));
-        analogWrite(motorLN, map(Ypos, 0, 511, 0, 255) - map(Xpos, 0, 511, 0, 255));
-      }
-      else // dead reverse
-      {
-        analogWrite(motorRP, 0);
-        analogWrite(motorLP, 0);
-
-        analogWrite(motorRN, map(Ypos, 0, 511, 0, 255));
-        analogWrite(motorLN, map(Ypos, 0, 511, 0, 255));
-      }
+        analogWrite(motorRN, 0);
+        analogWrite(motorRP, map(Rpos, dead, 511, 0, 255));
     }
     else
     {
-      if(Xpos < 0 - dead) // dead left
-      {
-        analogWrite(motorRP, 0);
-        analogWrite(motorLP, map(Xpos, 0, -512, 0, 255));
-
-        analogWrite(motorRN, map(Xpos, 0, -512, 0, 255));
-        analogWrite(motorLN, 0);
-      }
-      else if(Xpos > dead) // dead right
-      {
-        analogWrite(motorRP, map(Xpos, 0, 511, 0, 255));
-        analogWrite(motorLP, 0);
-
-        analogWrite(motorRN, 0);
-        analogWrite(motorLN, map(Xpos, 0, 511, 0, 255));
-      }
-      else // full stop
-      {
-        analogWrite(motorRP, 0);
-        analogWrite(motorLP, 0);
-
-        analogWrite(motorRN, 0);
-        analogWrite(motorLN, 0);
-      }
+      analogWrite(motorRP, 0);
+      analogWrite(motorRN, 0);
     }
 
-    cv = map(ctl->throttle(), 0, 1023, 100, 200);
+    if(Lpos < 0 - dead)
+    {
+        analogWrite(motorLP, 0);
+        analogWrite(motorLN, map(Lpos, -dead, -512, 0, 255));
+    }
+    else if(Lpos > 0 + dead)
+    {
+        analogWrite(motorLN, 0);
+        analogWrite(motorLP, map(Lpos, dead, 511, 0, 255));
+    }
+    else
+    {
+      analogWrite(motorLP, 0);
+      analogWrite(motorLN, 0);
+    }
+
+    cv = map(ctl->throttle(), 0, 1023, 200, 100);
 }
 
 void processControllers()
