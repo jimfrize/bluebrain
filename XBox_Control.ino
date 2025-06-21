@@ -88,9 +88,6 @@ void failsafe()
     analogWrite(motorLP, 0);
     analogWrite(motorRN, 0);
     analogWrite(motorRP, 0);
-
-    int cv = 255;
-    serv.write(cv);
 }
 
 ///////////
