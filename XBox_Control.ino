@@ -67,8 +67,8 @@ void processGamepad(ControllerPtr ctl)
     }
     else
     {
-      analogWrite(motorLP, 0);
-      analogWrite(motorLN, 0);
+      analogWrite(motorLP, 1);
+      analogWrite(motorLN, 1);
     }
 
     cv = map(ctl->throttle(), 0, 1023, 200, 100);
