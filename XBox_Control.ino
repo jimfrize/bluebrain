@@ -51,8 +51,8 @@ void processGamepad(ControllerPtr ctl)
     }
     else
     {
-      analogWrite(motorRP, 0);
-      analogWrite(motorRN, 0);
+      analogWrite(motorRP, 1);
+      analogWrite(motorRN, 1);
     }
 
     if(Lpos < 0 - dead)
