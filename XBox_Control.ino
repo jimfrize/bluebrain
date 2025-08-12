@@ -51,8 +51,8 @@ void processGamepad(ControllerPtr ctl)
     }
     else
     {
-      analogWrite(motorRP, 1);
-      analogWrite(motorRN, 1);
+      analogWrite(motorRP, 255);
+      analogWrite(motorRN, 255);
     }
 
     if(Lpos < 0 - dead)
@@ -67,8 +67,8 @@ void processGamepad(ControllerPtr ctl)
     }
     else
     {
-      analogWrite(motorLP, 1);
-      analogWrite(motorLN, 1);
+      analogWrite(motorLP, 255);
+      analogWrite(motorLN, 255);
     }
 
     cv = map(ctl->throttle(), 0, 1023, 200, 100);
